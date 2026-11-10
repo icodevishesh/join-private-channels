@@ -1,4 +1,12 @@
+import dns from 'node:dns';
 import { getSetting } from '../db/repo.js';
+
+// Force DNS resolution to prefer IPv4 first so requests leave from the allowlisted IPv4 address.
+try {
+  dns.setDefaultResultOrder('ipv4first');
+} catch {
+  // Ignore in environments where setDefaultResultOrder is not supported
+}
 
 export class ElefinError extends Error {}
 

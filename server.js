@@ -7,6 +7,11 @@
 //   npm run dev     development (hot reload for the admin panel)
 //   npm start       production (run `npm run build` first)
 
+import dns from 'node:dns';
+
+// Force DNS resolution to prefer IPv4 first so outgoing requests leave from the allowlisted IPv4 address (e.g. Elefin API).
+dns.setDefaultResultOrder('ipv4first');
+
 const dev = process.argv.includes('--dev');
 process.env.NODE_ENV ??= dev ? 'development' : 'production';
 

@@ -1,0 +1,14 @@
+# Dependencies and build output
+node_modules/
+.next/
+
+# Secrets: never commit
+.env
+.env.*
+!.env.example
+
+# Local tooling and OS files
+.claude/
+.DS_Store
+Thumbs.db
+*.log

@@ -1,0 +1,31 @@
+{
+  "name": "tg-discord-automation",
+  "version": "1.0.0",
+  "description": "Telegram bot that verifies Elefin clients and adds them to a private Discord server, with an admin panel",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js --dev",
+    "migrate": "node src/db/migrate.js",
+    "build": "next build"
+  },
+  "engines": {
+    "node": ">=20.11"
+  },
+  "dependencies": {
+    "discord.js": "^14.27.0",
+    "dotenv": "^18.0.8",
+    "grammy": "^1.46.0",
+    "mysql2": "^3.24.6",
+    "next": "^16.4.2",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "server-only": "^0.0.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "postcss": "^8.5.30",
+    "tailwindcss": "^4.3.3"
+  }
+}

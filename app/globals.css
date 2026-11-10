@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+html, body {
+  @apply bg-zinc-50 text-zinc-900 antialiased;
+}
+
+/* Tailwind v4 resets buttons to the default arrow cursor; use a pointer for everything clickable. */
+@layer base {
+  button,
+  [role="button"],
+  [role="switch"],
+  select,
+  summary,
+  input[type="checkbox"],
+  input[type="radio"],
+  label:has(input[type="checkbox"]),
+  label:has(input[type="radio"]) {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  select:disabled,
+  input:disabled {
+    cursor: not-allowed;
+  }
+}
+
+/* Flash used when the Setup page's "Fix now" opens a settings field. */
+@keyframes highlight-flash {
+  0%, 60% { background-color: var(--color-amber-50); box-shadow: inset 3px 0 0 var(--color-amber-400); }
+  100% { background-color: transparent; box-shadow: inset 3px 0 0 transparent; }
+}
+
+.highlight-flash {
+  animation: highlight-flash 3s ease-out;
+}
+
+/* Indeterminate progress bar (components/ui/ProgressBar.jsx). */
+@keyframes progress-slide {
+  0% { left: -35%; }
+  100% { left: 100%; }
+}
+
+.progress-indeterminate {
+  animation: progress-slide 1.1s ease-in-out infinite;
+}
+
+/* ---------- Chart series colors (validated: light on white, dark on the dark card surface) ---------- */
+:root {
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --chart-surface: #ffffff;
+}
+
+/* ---------- Dark mode ----------
+ * Set by the theme switch (html.dark). Instead of dark: classes on every component, the
+ * grey scale and the light tints are remapped here, so existing classes just work.
+ */
+@custom-variant dark (&:where(.dark, .dark *));
+
+html.dark {
+  color-scheme: dark;
+  --series-1: #3987e5;
+  --series-2: #d95926;
+  --chart-surface: #18181b;
+
+  /* Greys: backgrounds get darker, text gets lighter. */
+  --color-zinc-50: #111114;
+  --color-zinc-100: #232327;
+  --color-zinc-200: #2e2e33;
+  --color-zinc-300: #3f3f46;
+  --color-zinc-400: #71717a;
+  --color-zinc-500: #a1a1aa;
+  --color-zinc-600: #b4b4bb;
+  --color-zinc-700: #d4d4d8;
+  --color-zinc-800: #e4e4e7;
+  --color-zinc-900: #f4f4f5;
+
+  /* Light tints used as backgrounds (badges, active nav, alerts). */
+  --color-indigo-50: #1e1b4b;
+  --color-indigo-100: #272459;
+  --color-indigo-200: #312e81;
+  --color-indigo-300: #3730a3;
+  --color-green-50: #0f2a1b;
+  --color-green-100: #14532d;
+  --color-green-200: #166534;
+  --color-green-300: #15803d;
+  --color-amber-50: #2b1d07;
+  --color-amber-100: #3d2a0a;
+  --color-red-50: #2c1213;
+  --color-red-100: #450a0a;
+}
+
+/* Cards and inputs. */
+html.dark .bg-white { background-color: #18181b; }
+
+/* Modal backdrop stays dark (the remapped zinc-900 is light). */
+html.dark .bg-zinc-900\/50 { background-color: rgb(0 0 0 / 0.6); }
+
+/* Colored text that sits on the tints above: use lighter shades for contrast. */
+html.dark .text-indigo-600,
+html.dark .text-indigo-700,
+html.dark .hover\:text-indigo-700:hover,
+html.dark .text-indigo-900 { color: #a5b4fc; }
+html.dark .text-green-600,
+html.dark .text-green-700,
+html.dark .text-green-800 { color: #86efac; }
+html.dark .text-amber-600,
+html.dark .text-amber-700,
+html.dark .text-amber-800 { color: #fcd34d; }
+html.dark .text-red-600,
+html.dark .text-red-700,
+html.dark .text-red-800 { color: #fca5a5; }
